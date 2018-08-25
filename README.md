@@ -161,3 +161,51 @@ Exemplo:
                 url('^$', views.index, name="index"), 
             ]
 
+11. Implantação
+
+    1. Criar conta no PythonAnywhere
+        1. https://www.pythonanywhere.com/
+        
+    2. Interface do PythonAnywhere
+        1. Consoles: criar e gerenciar terminais 
+        2. Files: fazer upload e gerenciar o espaço em disco
+        3. Web: configurações da aplicação web
+        4. Schedule: configurar tarefas a serem executadas em determinados horários
+        5. Databases: configuração do banco de dados MySQL
+    
+    3. Acessar a aba "Consoles" e criar um novo terminal. Neste terminal, criar um novo ambiente virtual (ver item 2)
+    
+    4. Clonar o repositório
+    
+            $ git clone <url_do_repositorio>
+    
+    5. Utilizar o arquivo requirements.txt para instalar os pacotes (ver item 4)
+    
+    6. Acessar a aba "Web", e alterar as seguintes configurações
+        1. Diretório do projeto
+        
+                ~/my_project
+
+        2. Arquivo WSGI
+        
+                import os
+                import sys
+
+                path = '/home/AndersonPB94/tango_with_django/tango_with_django_project'
+                if path not in sys.path:
+                    sys.path.append(path)
+                
+                os.environ['DJANGO_SETTINGS_MODULE'] = 'tango_with_django_project.settings'
+                
+                from django.core.wsgi import get_wsgi_application
+                application = get_wsgi_application()
+ 
+        3. Diretório onde está localizado o virtualenv
+        
+                ~/.virtualenvs/my_env
+
+        4. Arquivos estáticos
+                
+                ~/.virtualenvs/rango/lib/<python-version>/site-packages/django/contrib/admin/static/admin
+ 
+        
