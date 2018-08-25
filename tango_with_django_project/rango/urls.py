@@ -20,4 +20,5 @@ from rango import views
 
 urlpatterns = [
     url(r'^$', views.rango_index, name='rango_index'),
+    url(r'^about/', views.about, name='about'),
 ]
