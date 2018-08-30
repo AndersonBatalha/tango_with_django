@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 def index(request):
     context_dict = {'boldmessage': 'Este texto veio da view'}
+    context_dict['autor'] = 'Anderson'
     return render(request, 'rango/index.html', context=context_dict)
 
 def rango_index(request):
