@@ -109,7 +109,11 @@ Opcionalmente, você pode substituir pelo IP da sua máquina, fazendo com que se
 
 8.  Criando um aplicativo 
 
+<<<<<<< HEAD
     1. Dentro da pasta onde foi criado seu projeto Django deve ser criado o aplicativo. Ex: na pasta my_project/<nome_do_aplicativo>
+=======
+    1. Na mesma pasta onde foi criado o projeto Django deve ser criado o aplicativo.
+>>>>>>> 486f234181d4dbb86978b84cb81fe8ec5041518b
 
             $ python manage.py startapp my_app
 		
@@ -191,7 +195,8 @@ Exemplo:
                 import os
                 import sys
 
-                path = '/home/AndersonPB94/tango_with_django/tango_with_django_project'
+                path = '/home/<usuario>/tango_with_django/tango_with_django_project'
+
                 if path not in sys.path:
                     sys.path.append(path)
                 

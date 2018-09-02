@@ -4,16 +4,9 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
-    texto = '''
-
-    <h2>Index do site</h2>
-
-    <br>
-
-    <a href='/rango'>Rango</a><br><br>
-
-    '''
-    return HttpResponse(texto)
+    context_dict = {'boldmessage': 'Este texto veio da view'}
+    context_dict['autor'] = 'Anderson'
+    return render(request, 'rango/index.html', context=context_dict)
 
 
 def rango_index(request):
