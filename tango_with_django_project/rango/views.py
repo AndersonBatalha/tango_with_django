@@ -10,29 +10,10 @@ def index(request):
 
 
 def rango_index(request):
-    texto = '''
-    
-    <h2>Index do app rango</h2>
-    
-    <br>
-    
-    <a href='/'>Voltar</a><br><br>
-    <a href='about/'>About</a><br><br>
-    
-    '''
-    return HttpResponse(texto)
+    context_dict = {'autor': 'Anderson'}
+    return render(request, 'rango/rango_index.html', context=context_dict)
 
 def about(request):
-    texto = '''
+    context_dict = {'twitter': 'http://twitter.com/tangowithdjango'}
 
-    <h2>Sobre o rango</h2>
-
-    <br>
-
-    <a href='/'>Index</a><br><br>
-    <a href='/rango'>Voltar</a><br><br>
-    <a href='http://twitter.com/tangowithdjango'>Siga-nos</a><br><br>
-
-    '''
-
-    return HttpResponse(texto)
+    return render(request, 'rango/about.html', context=context_dict)
