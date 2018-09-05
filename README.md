@@ -369,3 +369,106 @@ Exemplo:
                     ...
                     ...
                 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+15. Modelos
+    1. O Django utiliza o ORM (Object Relational Mapper) para realizar todas as operações de leitura, inserção, exclusão e atualização dos dados.
+    2. Um modelo é um objeto Python que descreve os campos e os comportamentos essenciais dos dados a serem armazenados. 
+    3. Em geral, cada modelo mapeia uma tabela no banco de dados. Cada modelo é uma função ou classe Python que herda da classe django.db.models.Model, e cada atributo da classe representa um campo.
+    4. Configurando o banco de dados
+        1. No arquivo settings.py, existe uma variável ```DATABASES```, responsável pelas configurações do banco de dados:
+
+                DATABASES = {
+                    'default': {
+                        'ENGINE': 'django.db.backends.sqlite3',
+                        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+                    }
+                }
+
+    5. Exemplo de um modelo
+
+            from django.db import models
+
+            class Pessoa(models.model):
+                nome = models.CharField(max_length=50)
+                sobrenome = models.CharField(max_length=50)
+                
+                def __str__(self):
+                    return self.nome
+
+        1. Sempre importar: ```from django.db import models```
+        2. Toda classe herda de ```models.model```
+        3. nome e sobrenome são atributos da classe Pessoa, ou seja, atributos da tabela no banco de dados
+        4. ```models.CharField``` representa o tipo de dados daquela variável
+        5. A função ```__str__()``` serve para exibir uma representação em string do objeto
+    
+    6. Tipos de dados
+        1. AutoField: incrementa automaticamente o valor da chave primária (não é necessário, ao criar um modelo, Django faz isso)
+        2. BigIntegerField: inteiro de 64 bits
+        3. BooleanField: booleano (verdadeiro/falso)
+        4. CharField(max_length): caracteres de tamanho limitado
+        5. DateField: representação de datas
+        6. DateTimeField: data e hora
+        7. DecimalField(max_digits, decimal_places): números decimais. Deve ser informado o número máximo de dígitos de número e o número de casas decimais após a vírgula
+        8. EmailField: endereços de email
+        9. FileField: upload de arquivos
+        10. FloatField: números de ponto flutuante
+        11. ImageField: upload de imagens
+        12. IntegerField: números inteiros
+        13. GenericIPAddressField: endereços IP
+        14. PositiveIntegerField: inteiros positivos
+        15. TextField: texto sem tamanho definido
+        16. TimeField: horário (datetime.time)
+        17. URLField: URL
+    
+    7. Relacionamentos entre as tabelas
+        1. O Django possui três tipos de campos para representar os relacionamentos entre as tabelas:
+            1. ForeignKey(model, on_delete)
+Relacionamento de muitos-para-um. Possui dois argumentos obrigatórios:
+model: a classe a qual o modelo está relacionado;
+on_delete: qual o comportamento do banco de dados ao excluir um registro (CASCADE, PROTECT, SET_NULL, SET_DEFAULT, DO_NOTHING)
+
+            2. ManyToManyField(model)
+Relacionamento de muitos-para-muitos. Requer um argumento: a classe a qual está se relacionando
+
+            3. OneToOneField(model)
+Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se relacionando
+    
+    8. Criando e migrando o banco de dados
+        1. Com os modelos criados, devemos inicializar o banco de dados, para criar o banco de dados e suas tabelas:
+
+                $ python manage.py migrate
+     
+        2. Sempre que ocorrer alguma alteração no modelos, deve ser executado o comando:
+    
+                $ python manage.py makemigrations
+
+        3. Para atualizar apenas o aplicativo que está sendo modificado, basta executar. Substitua <nome_do_app> pelo nome do seu aplicativo 
+
+                $ python manage.py makemigrations <nome_do_app>
+        
+        4. Para confirmar as migrações realizadas no aplicativo, é necessário executar novamente: 
+
+                $ python manage.py migrate
+                 
+    9. Acessando a interface administrativa do Django
+        1. A interface de admin do Django permite ver as tabelas criadas, além de excluir, inserir e editar dados.
+        2. É necessário criar usuário e senha para acessar essa interface, executando o comando:
+        
+                $ python manage.py createsuperuser
+        
+        3. Preencha com usuário, senha e email (opcional)
+        4. Execute o servidor
+
+                $ python manage.py runserver
+
+        5. Abra no navegador
+
+                http://localhost:8000/admin
+
+        6. Entre com usuário e senha
+        7. Para que os modelos criados em ```models.py``` apareçam nesta interface, é necessário editar o arquivo admin.py (localizado em ```myapp/admin.py```)
+        8. Neste arquivo, insira as seguintes linhas:
+        
+                $ admin.site.register(<model>)
+                
+            \* Troque ```<model>``` pelo nome das classes definidas em ```models.py```gi
