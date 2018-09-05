@@ -469,6 +469,6 @@ Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se rel
         7. Para que os modelos criados em ```models.py``` apareçam nesta interface, é necessário editar o arquivo admin.py (localizado em ```myapp/admin.py```)
         8. Neste arquivo, insira as seguintes linhas:
         
-                $ admin.site.register(<model>)
+                admin.site.register(<model>)
                 
             \* Troque ```<model>``` pelo nome das classes definidas em ```models.py```gi
