@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rango',
+    #'rango',
+    'rango.apps.RangoConfig'
 ]
 
 MIDDLEWARE_CLASSES = [
