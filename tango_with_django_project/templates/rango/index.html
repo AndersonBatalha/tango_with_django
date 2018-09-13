@@ -11,9 +11,24 @@
         <h1>Rango says...</h1>
         <div>
             hey there partner! <br /><br />
-            <strong>{{ boldmessage }}</strong><br /><br />
-            <hr><strong>{{ autor }}</strong><br /><br />
         </div>
+
+        <div>
+        {% if categories %}
+            <ul>
+               {% for category in categories %}
+                  <li>{{ category.name }} - {{ category.likes }} likes</li>
+               {% endfor %}
+            </ul>
+
+        {% else %}
+
+            <h4>Não existem categorias cadastradas.</h4>
+
+        {% endif %}
+
+        </div>
+
         <div>
             <a href="/rango/about/">About</a><br />
             <br>

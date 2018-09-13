@@ -471,4 +471,4 @@ Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se rel
         
                 admin.site.register(<model>)
                 
-            \* Troque ```<model>``` pelo nome das classes definidas em ```models.py```
+            * Troque ```<model>``` pelo nome das classes definidas em ```models.py```. Insira quantas linhas forem necessárias.
