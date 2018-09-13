@@ -66,19 +66,6 @@
 
 				$ git push origin master 
 
-		5. Criar branches (versões do seu repositório em um determinado estado)
-
-				$ git branch teste
-
-		6. Alternar entre branches 
-
-				$ git checkout master
-
-				$ git checkout teste
-
-		7. Listar os branches criados
-
-				$ git branch
 
 4. Gerenciar as dependências do projeto
 
@@ -435,19 +422,19 @@ Exemplo:
     
     7. Relacionamentos entre as tabelas
         1. O Django possui três tipos de campos para representar os relacionamentos entre as tabelas:
-            * ForeignKey(model, on_delete)
+            1. ForeignKey(model, on_delete)
 Relacionamento de muitos-para-um. Possui dois argumentos obrigatórios:
 model: a classe a qual o modelo está relacionado;
 on_delete: qual o comportamento do banco de dados ao excluir um registro (CASCADE, PROTECT, SET_NULL, SET_DEFAULT, DO_NOTHING)
 
-            * ManyToManyField(model)
+            2. ManyToManyField(model)
 Relacionamento de muitos-para-muitos. Requer um argumento: a classe a qual está se relacionando
 
-            * OneToOneField(model)
+            3. OneToOneField(model)
 Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se relacionando
     
     8. Criando e migrando o banco de dados
-        1. Com os modelos criados, devemos inicializar o banco de dados, para criando o banco de dados e suas tabelas:
+        1. Com os modelos criados, devemos inicializar o banco de dados, para criar o banco de dados e suas tabelas:
 
                 $ python manage.py migrate
      
@@ -459,74 +446,17 @@ Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se rel
 
                 $ python manage.py makemigrations <nome_do_app>
         
-            * Troque <nome_do_app> pelo nome do aplicaitivo Django (ex: rango)
-        
-        4. Para confirmar as migrações realizadas no app, é necessário executar novamente: 
+        4. Para confirmar as migrações realizadas no aplicativo, é necessário executar novamente: 
 
                 $ python manage.py migrate
-      
-    9. Shell do Django
-        1. O Django fornece um shell onde são possíveis realizar as operações de CRUD (Create, Read, Update, Delete) no banco de dados
-        2. Para executar o shell, basta digitar no terminal:
-                
-                $ python manage.py shell
-
-        3. Principais comandos de manipulação de dados
-         
-            * Importando os modelos criados em ```models.py```:
-            
-                    >>> from rango.models import Category
-         
-            * Exibindo todos os objetos criados:
-         
-                    >>> print (Category.objects.all())
-        
-            * Inserindo dados:
-                
-                    >>> category = Category(name='Esportes')       
-               
-            * Salva as informações no banco de dados
-               
-                    >>> category.save()
-             
-            * Consultas
-                
-               Retorna apenas um objeto (deve passar como parâmetro um atributo da  classe Category):
-    
-                    >>> Category.objects.get(pk=1)
-                   
-               Retorna vários objetos:
-    
-                    >>> Category.objects.filter(name="Esportes")
-                    
-               Retorna os últimos 5 registros
-    
-                    >>> print (Category.objects.all()[:5])
-                    
-               Ordenação por atributos
-    
-                    >>> Category.objects.order_by('name')
-    
-            * Atualização
-                
-                Alterando o valor de um atributo
-                
-                    >>> c = Category.objects.get(pk=1)
-                    >>> c.name='Política'
-                    >>> c.save()
-    
-            * Remoção
-            
-                    >>> c = Category.objects.get(pk=1)
-                    >>> c.delete()
-
-    10. Acessando a interface administrativa do Django
-        1. A interface de admin do Django permite ver as tabelas criadas, além de permitir todas as operações comuns em um banco de dados.
+                 
+    9. Acessando a interface administrativa do Django
+        1. A interface de admin do Django permite ver as tabelas criadas, além de excluir, inserir e editar dados.
         2. É necessário criar usuário e senha para acessar essa interface, executando o comando:
         
                 $ python manage.py createsuperuser
         
-        3. Preencha com usuário e senha (o email é opcional)
+        3. Preencha com usuário, senha e email (opcional)
         4. Execute o servidor
 
                 $ python manage.py runserver
@@ -535,10 +465,10 @@ Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se rel
 
                 http://localhost:8000/admin
 
-        6. Entre com usuário e senha criados
-        7. Para que os modelos criados em ```models.py``` apareçam nesta interface, é necessário editar o arquivo admin.py (localizado em ```<nome_do_app>/admin.py```)
+        6. Entre com usuário e senha
+        7. Para que os modelos criados em ```models.py``` apareçam nesta interface, é necessário editar o arquivo admin.py (localizado em ```myapp/admin.py```)
         8. Neste arquivo, insira as seguintes linhas:
         
                 admin.site.register(<model>)
                 
-            * Troque ```<model>``` pelo nome das classes definidas em ```models.py```. Insira quantas linhas forem necessárias.
+            \* Troque ```<model>``` pelo nome das classes definidas em ```models.py```
