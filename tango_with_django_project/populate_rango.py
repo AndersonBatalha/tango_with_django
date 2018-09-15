@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import os, django, random
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tango_with_django_project.settings")
