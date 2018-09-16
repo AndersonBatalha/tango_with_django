@@ -8,7 +8,7 @@ django.setup()
 
 os.system('rm -rf db.sqlite3')
 os.system('python manage.py migrate')
-os.system('python manage.py makemigrations')
+os.system('python manage.py makemigrations rango')
 
 from rango.models import Category, Page
 
