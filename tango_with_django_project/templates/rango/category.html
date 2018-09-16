@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rango</title>
+    </head>
+    <body>
+        <div>
+            {% if category %}
+
+                <h1>{{ category.name }}</h1>
+                {% if pages %}
+                    <ul>
+                        {% for page in pages %}
+                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <strong><h4>Não existem páginas relacionadas a esta categoria</h4></strong>
+                {% endif %}
+
+            {% else %}
+                <h3>Não existe essa categoria</h3>
+            {% endif %}
+        </div>
+
+
+    </body>
 </html>

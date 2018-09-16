@@ -17,11 +17,12 @@ class PageAdmin(admin.ModelAdmin):
     ]
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'views', 'likes']
+    prepopulated_fields = {'slug': ('name',)}
+    list_display = ['name', 'views', 'likes', 'slug']
     list_filter = ['name']
     search_fields = ['name', 'likes']
     fieldsets = [
-        ('Categoria', {'fields': ['name']}),
+        ('Categoria', {'fields': ['name', 'slug']}),
         ('Curtidas e visualizações', {'fields': ['views', 'likes']})
     ]
 
