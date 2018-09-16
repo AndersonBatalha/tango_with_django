@@ -149,11 +149,12 @@ Exemplo:
 	]
 
 
-* urlpatterns é uma lista que contém os mapeamentos uma view para uma URL
+* urlpatterns é uma lista que contém os mapeamentos de uma view para uma URL
 * views.index se refere a função index() presente no arquivo my_app/views.py
 * name é um parâmetro adicional que identifica a view
 * expressões regulares:
-	^ começa com, $ termina com
+    
+    ^ começa com, $ termina com
 
 	1. Em seguida crie o arquivo my_app/urls.py (na pasta do aplicativo)
 
@@ -466,9 +467,187 @@ Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se rel
                 http://localhost:8000/admin
 
         6. Entre com usuário e senha
-        7. Para que os modelos criados em ```models.py``` apareçam nesta interface, é necessário editar o arquivo admin.py (localizado em ```myapp/admin.py```)
+        7. Para que os modelos criados em ```models.py``` apareçam nesta interface, é necessário editar o arquivo ```admin.py``` (localizado em ```myapp/admin.py```)
         8. Neste arquivo, insira as seguintes linhas:
         
                 admin.site.register(<model>)
                 
             * Troque ```<model>``` pelo nome das classes definidas em ```models.py```. Insira quantas linhas forem necessárias.
+
+    10. Personalizando a interface administrativa do Django
+        1. É possível modificar a aparência da interface admin do Django. Para isso é necessário modificar o arquivo ```admin.py```
+        
+        * Exemplo:
+        
+                class PageAdmin(admin.ModelAdmin):
+                    list_display = ['title', 'url', 'category', 'views']
+                    list_filter = ['title']
+                    search_fields = ['title']
+                    fieldsets = [
+                        ('Página', {'fields': ['category', 'title', 'url']}),
+                        ('Views', {'fields': ['views']})
+                    ]
+                    
+               admin.site.register(PageAdmin)
+                    
+            1. Toda classe herda de ```admin.ModelAdmin```
+            2. ```PageAdmin``` está relacionado com o model ```Page``` definido em ```models.py```
+            3. ```list_display```: altera os campos a serem exibidos na tela de edição
+            4. ```list_filter```: permite filtrar os registros através de um atributo
+            5. ```search_fields```: exibe um campo de pesquisa
+            6. ```fieldsets```: separa os campos por categorias
+            
+16. Models, templates e views
+    1. Após criar os modelos e o script de população do banco de dados, é necessário interligar os models, templates e views para gerar conteúdo dinâmico.
+        1. No arquivo ```views.py``` importe os modelos a serem utilizados
+        
+                from rango.models import Category
+        
+        2. Na view, crie as consultas para obter os dados que irão ser apresentados
+        3. Passe os dados como contexto para o template
+        
+                def index(request):
+                    category_list = Category.objects.order_by('-likes')[:5]
+                    print('Categorias: ', category_list, len(category_list))
+                
+                    context_dict = {'categories': category_list}
+                    return render(request, 'rango/index.html', context=context_dict)
+        
+            * ```category_list``` retorna as categorias cadastradas no banco de dados
+            * ```Category.objects.order_by```: retorna o resultado ordenando pelo número de likes
+            * ```'-likes'```: o sinal de - indica ordenação decrescente
+            * ```[:5]``` limita em 5 o número de registros
+            * ```context_dict``` representa o dicionário com o resultado da consulta (```category_list```), que será passado para o template
+            * A função ```render()``` recebe como parâmetros a requisição (```request```), o template (```index.html```), e o contexto (```context_dict```)
+                        
+        4. Crie ou modifique o template para exibir os dados do contexto
+        
+                <!DOCTYPE html>
+                <html>
+                
+                    {% load staticfiles %}
+                
+                    <head>
+                        <title>Rango</title>
+                    </head>
+                
+                    <body>
+                        <h1>Rango says...</h1>
+                        <div>
+                            hey there partner! <br /><br />
+                        </div>
+                
+                        <div>
+                        {% if categories %}
+                            <ul>
+                               {% for category in categories %}
+                                  <li>{{ category.name }} - {{ category.likes }} likes</li>
+                               {% endfor %}
+                            </ul>
+                
+                        {% else %}
+                
+                            <h4>Não existem categorias cadastradas.</h4>
+                
+                        {% endif %}
+                
+                        </div>
+                
+                        <div>
+                            <a href="/rango/about/">About</a><br />
+                            <br>
+                            <img width="400px" height="400px" src="{% static 'images/rango.jpg' %}" alt="Picture of Rango"/>
+                        </div>
+                    </body>
+                
+                </html>
+
+            * Todos os comandos entre ```{% %}``` são específicos da linguagem de templates do Django
+            * O código acima verifica se a variável categories existe, e então percorre a lista, exibindo o nome e o número de likes para cada categoria. Se não existem categorias, uma mensagem é exibida.
+        
+        5. Mapeie a URL para a view (no arquivo ```urls.py```)
+        
+                url(r'^$', views.index, name='index'),
+
+    2. Criando a página de detalhes
+        1. O próximo passo é listar as páginas que pertencem a cada categoria.
+        2. O principal problema está nas URLs. Podemos criar uma URL do tipo ```rango/category/1```, mas não é possível saber o nome da categoria apenas pelo id.
+        3. Para resolver este problema, o ideal é criar URLs limpas. Por exemplo: ```rango/category/python``` torna melhor a usabilidade e acessibilidade do site para os usuários
+        4. O Django fornece a função slugify para substituir espaços em branco em hifens. Exemplo: "Django Tutorial" para "django-tutorial". Não é recomendado criar URLs com espaços, por questões de segurança.
+        5. Atualizando os modelos. Modifique a classe ```Category``` em ```models.py``` e adicione um campo ```slug```do tipo ```SlugField```. Além disso, adicione um método ```save()```, que irá atualizar o valor da variável slug toda vez que uma categoria for inserida no banco de dados. 
+        
+                class Category(models.Model):
+                    name = models.CharField(max_length=128, unique=True)
+                    views = models.IntegerField(default=0)
+                    likes = models.IntegerField(default=0)
+                    slug = models.SlugField()
+                    
+                    def save(self, *args, **kwargs):
+                        self.slug = slugify(self.name)
+                        super(Category, self).save(*args, **kwargs)
+                        
+                    class Meta:
+                        verbose_name_plural = 'categories'
+                    
+                    def __str__(self):
+                        return self.name
+
+        6. Realize as migrações (migrate e makemigrations) e execute o script de população novamente
+        
+        7. Para exibir as páginas associadas a uma categoria, é necessário:
+            * Importar o model Page em ```views.py```
+            
+                    from rango.models import Page
+                    
+            * Criar uma view ```show_category()```
+
+                    def show_category(request, category_name_slug): 
+                        context_dict = {}
+                
+                        try:
+                            category = Category.objects.get(slug=category_name_slug)
+                            pages = Page.objects.filter(category=category)
+                    
+                            context_dict['pages'] = pages
+                            context_dict['category'] = category
+                    
+                        except Category.DoesNotExist:
+                            context_dict['category'] = None
+                            context_dict['pages'] = None
+                    
+                        return render(request, 'rango/category.html', context_dict)
+            
+            * Criar um template em ```templates/rango/category.html```
+
+                    <!DOCTYPE html>
+                    <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <title>Rango</title>
+                        </head>
+                        <body>
+                            <div>
+                                {% if category %}
+                    
+                                    <h1>{{ category.name }}</h1>
+                                    {% if pages %}
+                                        <ul>
+                                            {% for page in pages %}
+                                            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                    
+                                    {% else %}
+                                        <strong><h4>Não existem páginas relacionadas a esta categoria</h4></strong>
+                                    {% endif %}
+                    
+                                {% else %}
+                                    <h3>Não existe essa categoria</h3>
+                                {% endif %}
+                            </div>
+                    
+                    
+                        </body>
+                    </html>
+            
+            * Atualizar a view index() e o template index.html para exibir os links para exibir a lista de páginas
