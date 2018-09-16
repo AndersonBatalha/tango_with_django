@@ -41,7 +41,7 @@ def show():
     print('Showing pages...')
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
-            print("%s (%s)" % (str(c), str(p)))
+            print("- {0} ({1})".format(str(c), str(p)))
 
 
 def add_page(cat, title, url, views=0):
