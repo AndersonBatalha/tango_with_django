@@ -41,7 +41,7 @@ def show():
     print('Showing pages...')
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
-            print("- {0} ({1})".format(str(p), str(c)))
+            print("- {0} ({1})".format(str(c), str(p)))
 
 
 def add_page(cat, title, url, views=0):
@@ -65,7 +65,6 @@ def add_cat(name, views=0, likes=0):
 # Start execution here!
 if __name__ == '__main__':
     print("Starting Rango population script...")
-    # if not os.path.isfile('categories.csv'):
     gerar_arquivo_category()
     populate()
     show()
