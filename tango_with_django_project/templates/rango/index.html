@@ -14,7 +14,8 @@
         </div>
 
         <div>
-        {% if categories %}
+            <h3>Categorias mais curtidas</h3>
+            {% if categories %}
             <ul>
                {% for category in categories %}
                     <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a> - {{ category.likes }} likes</li>
@@ -24,6 +25,23 @@
         {% else %}
 
             <h4>Não existem categorias cadastradas.</h4>
+
+        {% endif %}
+
+        </div>
+
+        <div>
+            <h3>Páginas mais visualizadas</h3>
+            {% if pages %}
+            <ul>
+               {% for page in pages%}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a> - {{ page.views }} views</li>
+               {% endfor %}
+            </ul>
+
+        {% else %}
+
+            <h4>Não existem páginas para esta categoria.</h4>
 
         {% endif %}
 
