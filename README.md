@@ -651,3 +651,82 @@ Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se rel
                     </html>
             
             * Atualizar a view index() e o template index.html para exibir os links para exibir a lista de páginas
+
+17. Forms
+    1. O Django permite gerar formulários de maneira simples, que podem coletar informações dos usuários e salvar no banco de dados através dos modelos, além de validar esses dados.
+    2. Criando um formulário
+        1. Crie um arquivo ```forms.py``` no diretório do seu aplicativo. Exemplo: ```rango/forms.py```
+        2. Uma classe deve ser criada para cada model que necessita de um formulário
+        
+                class CategoryForm(forms.ModelForm):
+                    name = forms.CharField(max_length=128, help_text='Informe a categoria')
+                    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+                    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+                    slug = forms.CharField(widget=forms.HiddenInput(), required=False)
+                
+                    class Meta:
+                        model = Category
+                        fields = ('name',)        
+                 
+            * ```forms.ModelForm``` é um recurso do Django que permite criar um formulário que pode ser acessado pelo usuário, a partir de um model
+            * Cada campo do formulário tem um campo correspondente no model, com o mesmo tipo de dados definido no modelo
+            * ```forms.HiddenInput``` oculta o campo, para que o usuário não possa preencher
+            * O valor 0 em ```initial``` significa que, por padrão, as variáveis ```views``` e ```likes``` terão esse valor.
+            * A classe ```Meta``` possui dois atributos principais: ```model``` (especifica qual o modelo será usado) e ```fields``` (quais campos estarão disponíveis)
+            * Também poderia ser utilizado o atributo ```exclude``` para os campos que não aparecem no formulário
+                           
+        3. Crie uma view para manipular o formulário, incluindo salvar os dados e validação dos dados do formulário
+        
+                from rango.forms import CategoryForm
+                def add_category(request):
+                     form = CategoryForm()
+                     if request.method == 'POST':
+                        form = CategoryForm(request.POST)
+                    
+                    if form.is_valid():
+                        form.save(commit=True)
+                        return index(request)
+                    else:
+                        print(form.errors)
+                        return render(request, 'rango/add_category.html', {'form': form})
+
+        4. Crie o template para exibir o formulário
+        
+            ```
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Adicionar categoria</title>
+                </head>
+                        
+                <body>
+                    <h1>Adicionar categoria</h1>
+                    <div>
+                        <form id="category_form" method="post" action="/rango/add_category/">
+                            {% csrf_token %}
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            {% for field in form.visible_fields %}
+                                {{ field.errors }}
+                                {{ field.help_text }}
+                                {{ field }}
+                            {% endfor %}
+                            <input type="submit" name="submit" value="Criar categoria">
+            
+                        </form>
+                    </div>
+            
+            
+                </body>
+            </html>
+            ```
+            
+            * São criados dois loops: um para percorrer os campos ocultos (```form.hidden_fields```) e os campos visíveis (```form.visible_fields```)
+            * Também serão exibidos os erros (```field.errors```) e um texto de ajuda (```field.help_text```)
+            * ```{% csrf_token %}``` é um recurso de segurança para proteger dados enviados via formulário
+            
+        5. Crie uma URL para a view criada (se a URL ainda não existir)
+    
+                url(r'^add_category/', views.add_category, name='add_category'),
