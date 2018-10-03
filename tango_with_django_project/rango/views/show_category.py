@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rango.models import Category, Page
+from ..models import Category, Page
 
 
 def show_category(request, category_name_slug): # a função recebe como parâmetro o nome da categoria

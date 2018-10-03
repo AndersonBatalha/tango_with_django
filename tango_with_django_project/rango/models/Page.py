@@ -1,6 +1,6 @@
 from django.db import models
 
-from rango.models import Category
+from ..models import Category
 
 
 class Page(models.Model):
