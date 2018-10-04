@@ -20,11 +20,11 @@
                     <strong><h4>Não existem páginas relacionadas a esta categoria</h4></strong>
                 {% endif %}
 
+            <a href="{% url 'add_page' category.slug %}">Adicionar página</a><br><br>
             {% else %}
-                <h3>Não existe essa categoria</h3>
+                <h2>A categoria solicitada não existe.</h2>
             {% endif %}
         </div>
-        <a href="{% url 'add_page' category.slug %}">Adicionar página</a>
         <a href='/'>Voltar</a><br><br>
 
     </body>
