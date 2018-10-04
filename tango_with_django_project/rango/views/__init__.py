@@ -1,7 +1,8 @@
-from .index import index
-from .about import about
-from .rango_index import rango_index
-from .show_category import show_category
-from .add_category import add_category
+from .index import Index
+from .about import About
+from .rango_index import RangoIndex
+from .show_category import ShowCategory
+from .add_category import AddCategory
+# from .add_page import AddPage
 from .add_page import add_page
 
