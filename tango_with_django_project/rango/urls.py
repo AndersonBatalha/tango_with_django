@@ -14,12 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from . import views
+
+from rango import views
+from .views import About, RangoIndex, ShowCategory, AddCategory
 
 urlpatterns = [
-    url(r'^$', views.rango_index, name='rango_index'),
-    url(r'^about/', views.about, name='about'),
-    url(r'^add_category/', views.add_category, name='add_category'),
-    url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.show_category, name='show_category'),
-    url(r'^(?P<category_name_slug>[\w\-]+)/add_page/$', views.add_page, name='add_page'),
+    url(r'^$', RangoIndex.as_view(), name='rango_index'),
+    url(r'^about/', About.as_view(), name='about'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/', ShowCategory.as_view(), name='show_category'),
+    url(r'^add_category/', AddCategory.as_view(), name='add_category'),
+    # url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page', AddPage.as_view(), name='add_page'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page', views.add_page, name='add_page'),
 ]
