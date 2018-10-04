@@ -21,7 +21,7 @@ from .views import About, RangoIndex, ShowCategory, AddCategory
 urlpatterns = [
     url(r'^$', RangoIndex.as_view(), name='rango_index'),
     url(r'^about/', About.as_view(), name='about'),
-    url(r'^category/(?P<category_name_slug>[\w\-]+)/', ShowCategory.as_view(), name='show_category'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/$', ShowCategory.as_view(), name='show_category'),
     url(r'^add_category/', AddCategory.as_view(), name='add_category'),
     # url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page', AddPage.as_view(), name='add_page'),
     url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page', views.add_page, name='add_page'),
