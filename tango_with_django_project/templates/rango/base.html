@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+    {% load staticfiles %}
+
+    <head>
+        <title>
+            Rango -
+            {% block title_block %}
+                How to Tango with Django!
+            {% endblock %}
+        </title>
+    </head>
+
+    <body>
+        <h1>Rango says...</h1>
+        <div>
+            hey there partner! <br /><br />
+        </div>
+
+        <div>
+            {% block body_block %}
+            {% endblock %}
+        </div>
+
+        <hr>
+        <div>
+            <a href="{% url 'index' %}">Página inicial</a><br />
+            <a href="{% url 'about' %}">About</a><br />
+            <a href="{% url 'add_category' %}">Adicionar categoria</a><br />
+            <br>
+        </div>
+    </body>
+
+</html>
