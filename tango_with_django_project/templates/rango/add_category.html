@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Adicionar categoria</title>
-    </head>
 
-    <body>
+{% extends 'rango/base.html' %}
+
+{% block title_block %} - Adicionar categoria {% endblock %}
+
+{% block body_block %}
         <h1>Adicionar categoria</h1>
         <div>
             <form id="category_form" method="post" action="{% url 'add_category' %}">
@@ -22,7 +21,4 @@
 
             </form>
         </div>
-
-
-    </body>
-</html>
+{% endblock %}

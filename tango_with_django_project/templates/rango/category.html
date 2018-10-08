@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Categoria: {{ category.name }}</title>
-    </head>
-    <body>
-        <div>
-            {% if category %}
 
-                <h1>{{ category.name }}</h1>
-                {% if pages %}
-                    <ul>
-                        {% for page in pages %}
-                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-                        {% endfor %}
-                    </ul>
+{% extends 'rango/base.html'%}
 
-                {% else %}
-                    <strong><h4>Não existem páginas relacionadas a esta categoria</h4></strong>
-                {% endif %}
+{% block title_block %} - Categoria: {{ category.name }} {% endblock %}
 
-            <a href="{% url 'add_page' category.slug %}">Adicionar página</a><br><br>
-            {% else %}
-                <h2>A categoria solicitada não existe.</h2>
-            {% endif %}
-        </div>
-        <a href='/'>Voltar</a><br><br>
+{% block body_block %}
+    {% if category %}
 
-    </body>
-</html>
+        <h1>{{ category.name }}</h1>
+        {% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+
+        {% else %}
+            <strong><h4>Não existem páginas relacionadas a esta categoria</h4></strong>
+        {% endif %}
+
+    <a href="{% url 'add_page' category.slug %}">Adicionar página</a><br><br>
+
+    {% else %}
+        <h2>A categoria solicitada não existe.</h2>
+    {% endif %}
+{% endblock %}

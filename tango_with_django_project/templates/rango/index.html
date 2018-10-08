@@ -1,32 +1,28 @@
 <!DOCTYPE html>
-<html>
 
-    {% load staticfiles %}
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
 
-    <head>
-        <title>Rango</title>
-    </head>
+{% block title_block %}
+ - Página inicial
+{% endblock %}
 
-    <body>
-        <h1>Rango says...</h1>
-        <div>
-            hey there partner! <br /><br />
-        </div>
+{% block body_block %}
 
         <div>
             <h3>Categorias mais curtidas</h3>
-        {% if categories %}
-            <ul>
-               {% for category in categories %}
-                    <li><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a> - {{ category.likes }} likes</li>
-               {% endfor %}
-            </ul>
+            {% if categories %}
+                <ul>
+                   {% for category in categories %}
+                        <li><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a> - {{ category.likes }} likes</li>
+                   {% endfor %}
+                </ul>
 
-        {% else %}
+            {% else %}
 
-            <h4>Não existem categorias cadastradas.</h4>
+                <h4>Não existem categorias cadastradas.</h4>
 
-        {% endif %}
+            {% endif %}
 
         </div>
 
@@ -48,11 +44,8 @@
         </div>
 
         <div>
-            <a href="{% url 'add_category' %}">Adicionar categoria</a><br />
-            <a href="{% url 'about' %}">About</a><br />
-            <br>
             <img width="400px" height="400px" src="{% static 'images/rango.jpg' %}" alt="Picture of Rango"/>
         </div>
-    </body>
+{% endblock %}
 
 </html>

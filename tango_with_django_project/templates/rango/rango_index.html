@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 
+{% extends 'rango/base.html' %}
 {% load staticfiles %}
 
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Rango Index</title>
-    </head>
+{% block title_block %} - Index {% endblock %}
 
-    <body>
-        <h2>Index do app rango</h2>
-
-        <br>
-
-        <a href="{% url 'index' %}">Voltar</a><br><br>
-        <a href="{% url 'about' %}">About</a><br><br>
+{% block body_block %}
 
         <hr>
 
-        <h5>Desenvolvido por {{ autor }}</h5>
-    </body>
-</html>
+        <h4>Desenvolvido por {{ autor }}</h4>
+{% endblock %}
