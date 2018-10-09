@@ -2,12 +2,13 @@
 <html>
 
     {% load staticfiles %}
+    {% load rango_template_tags %}
 
     <head>
         <title>
             Rango
             {% block title_block %}
-                How to Tango with Django!
+                - How to Tango with Django!
             {% endblock %}
         </title>
     </head>
@@ -16,6 +17,12 @@
         <h1>Rango says...</h1>
         <div>
             hey there partner! <br /><br />
+        </div>
+
+        <div>
+            {% block sidebar_block %}
+                {% get_category_list %}
+            {% endblock %}
         </div>
 
         <div>
