@@ -1,0 +1,16 @@
+{% extends 'rango/base.html' %}
+
+{% block sidebar_block %}
+
+    <ul>
+        {% if cats %}
+            {% for c in cats %}
+                <li><a href="{% url 'show_category' c.slug %}">{{ c.name }}</a></li>
+            {% endfor %}
+        {% else %}
+            <strong>Não existem categorias</strong>
+        {% endif %}
+
+    </ul>
+
+{% endblock %}
