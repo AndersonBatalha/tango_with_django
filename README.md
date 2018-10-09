@@ -730,3 +730,62 @@ Relacionamentos de um-para-um. Requer um argumento: a classe a qual está se rel
         5. Crie uma URL para a view criada (se a URL ainda não existir)
     
                 url(r'^add_category/', views.add_category, name='add_category'),
+
+18. Templates
+    1. Usando links relativos
+    
+        1. Até agora, estamos utilizando URLs no formato:
+        
+                /rango/about
+                /rango/add_category
+        
+        2. Isso é um problema. Em caso de alterações em ```urls.py```, será necessário alterar os links em todos os templates. Para solucionar este problema, basta utilizar a tag ```{% url 'name' %}```, onde ```name``` é a variável definida em ```rango/urls.py```
+        
+        3. Em ```urls.py```
+        
+                url(r'^about/', About.as_view(), name='about'),
+        
+        4. Altere o template:
+        
+                <a href="{% url 'about' %}">Sobre</a>
+    
+        5. Em views que necessitam ser passados parâmetros, basta adicionar:
+
+                <a href="{% url 'show_category' category.slug %}">Categoria</a>
+                
+        6. Em projetos com vários apps, podem haver links de mesmo nome em apps diferentes. Para resolver este problema, pode ser adicionada a variável ```app_name``` em ```urls.py```:
+        
+                app_name = 'rango'
+
+            E em seguida, adicionar ao template:
+
+                <a href="{% url 'rango:about' %}">Sobre</a>
+
+    2. Herança de templates
+    
+        1. Nos templates criados durante o projeto, podemos identificar partes em comum, como por exemplo: cabeçalhos, rodapé, barra lateral, entre outras coisas.
+        2. Para evitar repetição de código e facilitar a manutenção, é possível criar um template base e colocar tudo o que é repetido.
+        3. Em seguida, crie os templates específicos para cada página, que devem herdar do template base.
+        4. Na pasta de templates do seu aplicativo (ex: ```rango/templates```), crie um arquivo de nome ```base.html```
+        5. Neste arquivo, coloque a estrutura base da página
+        6. Tags de template
+            * É possível definir blocos no template base, que serão substituídos pelo conteúdo dos templates-filhos.
+            * Para isso, é necessário usar a tag ```{% block <name> %}```, onde ```<name>``` é o nome do bloco a ser criado. Todo bloco sempre termina com ```{% endblock %}```
+            * No arquivo ```templates/rango/base.html```:
+                       
+                    (...)
+                    {% block body_block %}
+                                           
+                    {% endblock %}            
+                    (...)
+            
+            * Para substituir o conteúdo em outro template, no começo do arquivo, insira a tag ```{% extends <template> %}```, onde ```<template>``` é o template base que deve ser estendido. 
+            
+                    {% extends 'rango/base.html' %}
+                                        
+                    {% block body_block %}
+                        <!-- Conteúdo --> 
+                    {% endblock %}
+                    
+            * O que estiver entre as tags ```{% block %}``` será substituído no arquivo ```base.html```
+            
