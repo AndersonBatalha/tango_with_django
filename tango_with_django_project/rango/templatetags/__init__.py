@@ -1,0 +1,1 @@
+from ..templatetags import rango_template_tags
