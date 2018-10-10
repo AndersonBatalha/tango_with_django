@@ -10,15 +10,18 @@ os.system('rm -rf db.sqlite3')
 os.system('python manage.py migrate')
 os.system('python manage.py makemigrations rango')
 
-from .rango.models import Category, Page
+from rango.models import Category, Page
 
 categorias = ['Esportes', 'Filmes', 'Política', 'Django', 'Python', 'git', 'Carros', 'Notícias', 'Televisão', 'Educação', 'Tecnologia', 'virtualenv', 'Entretenimento', 'Culinária', 'Rádios', 'Linux', 'Software livre', 'Ubuntu', 'Wine', 'Tutoriais', 'Eleições', 'Redes sociais', 'Podcast', 'Economia', 'E-mail', 'Jogos', 'Copa do Mundo', 'Humor', 'Vídeos', 'Ionic', 'Android', 'Blogs', 'Windows', 'Debian', 'Red Hat', 'Java', 'Flask', 'Bottle', 'Typescript', 'Bootstrap', 'CSS', 'HTML', 'PHP', 'Shell script', 'Redes', 'Matemática', 'Segurança da informação', 'Saúde', 'F1']
 
 def gerar_arquivo_category():
-    print ("Criando arquivo categories.csv")
-    arquivo_cat = open('categories.csv', 'w')
-    for categoria in categorias:
-        arquivo_cat.write("%s, %d, %d\n" % (categoria, random.randint(1,250), random.randint(1,250)))
+    if os.path.isfile('categories.csv') and len(open('categories.csv', 'r').readlines()) > 0:
+        print ("Arquivo categories.csv já existe!")
+    else:
+        print ("Criando arquivo categories.csv")
+        arquivo_cat = open('categories.csv', 'w')
+        for categoria in categorias:
+            arquivo_cat.write("%s, %d, %d\n" % (categoria, random.randint(1,250), random.randint(1,250)))
 
 def populate():
     categories = open('categories.csv').readlines()
