@@ -14,9 +14,15 @@
 
     <body>
         <h1>Rango says...</h1>
-        <div>
-            hey there partner! <br /><br />
-        </div>
+        {% if user.is_authenticated %}
+            <div>
+                olá, {{ user.username }}! <br /><br />
+            </div>
+        {% else %}
+            <div>
+                hey there partner! <br /><br />
+            </div>
+        {% endif %}
 
         <div>
             {% block body_block %}
@@ -35,6 +41,7 @@
             <a href="{% url 'index' %}">Página inicial</a><br />
             <a href="{% url 'about' %}">About</a><br />
             <a href="{% url 'register' %}">Cadastre-se</a><br />
+            <a href="{% url 'login' %}">Entrar</a><br />
             <a href="{% url 'add_category' %}">Adicionar categoria</a><br />
             <a href="/admin">Django - Admin</a><br />
             <br>
