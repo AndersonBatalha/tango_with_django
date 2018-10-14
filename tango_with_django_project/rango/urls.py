@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from rango import views
 
 from .views import About, RangoIndex, ShowCategory, AddCategory, AddPage
 
@@ -23,5 +24,6 @@ urlpatterns = [
     url(r'^category/(?P<category_name_slug>[\w\-]+)/$', ShowCategory.as_view(), name='show_category'),
     url(r'^add_category/', AddCategory.as_view(), name='add_category'),
     url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page', AddPage.as_view(), name='add_page'),
-    # url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page', views.add_page, name='add_page'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^login/$', views.user_login, name='login'),
 ]
