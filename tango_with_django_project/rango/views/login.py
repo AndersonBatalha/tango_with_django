@@ -18,6 +18,7 @@ def user_login(request):
                 return HttpResponse("Sua conta foi desativada.")
         else:
             print("Informações de login inválidas: {0}, {1}".format(username, password))
+            print(request.errors)
             return HttpResponse("Informações de login inválidas foram inseridas.")
 
     else:

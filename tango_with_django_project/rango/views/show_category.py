@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic import View
 
@@ -38,5 +39,7 @@ class ShowCategory(View):
         except Category.DoesNotExist: # se a categoria não existe, retorna um valor nulo
             self.context_dict['category'] = None
             self.context_dict['pages'] = None
+
+        self.context_dict['logado'] = request.user.is_authenticated()
 
         return render(request, self.template, self.context_dict)

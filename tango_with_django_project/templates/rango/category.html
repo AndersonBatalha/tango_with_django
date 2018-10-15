@@ -19,7 +19,9 @@
             <strong><h4>Não existem páginas relacionadas a esta categoria</h4></strong>
         {% endif %}
 
-    <a href="{% url 'add_page' category.slug %}">Adicionar página</a><br><br>
+    {% if logado %}
+        <a href="{% url 'add_page' category.slug %}">Adicionar página</a><br><br>
+    {% endif %}
 
     {% else %}
         <h2>A categoria solicitada não existe.</h2>
