@@ -11,19 +11,20 @@
             {% endblock title_block %}
         </title>
     </head>
-
     <body>
-        <h1>Rango says...</h1>
-        {% if user.is_authenticated %}
-            <div>
-                olá, {{ user.username }}! <br /><br />
-                <p><a href="{% url 'logout' %}">Sair</a></p>
-            </div>
-        {% else %}
-            <div>
-                hey there partner! <br /><br />
-            </div>
-        {% endif %}
+        <div>
+            <h1>Rango says...</h1>
+            {% if user.is_authenticated %}
+                <div>
+                    olá, {{ user.username }}! <br /><br />
+                    <p><a href="{% url 'logout' %}">Sair</a></p>
+                </div>
+            {% else %}
+                <div>
+                    hey there partner! <br /><br />
+                </div>
+            {% endif %}
+        </div>
 
         <div>
             {% block body_block %}
@@ -34,30 +35,22 @@
         <div>
             {% block sidebar_block %}
                 {% get_category_list category %}
-            {% endblock sidebar_block %}
+            {% endblock %}
         </div>
 
         <hr>
         <div>
-            <ul>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'restricted' %}">Conteúdo exclusivo</a><br /></li>
-                    <li><a href="{% url 'logout' %}">Logout</a><br /></li>
-                    <li><a href="{% url 'add_category' %}">Adicionar categoria</a><br /></li>
-                    <li><a href="/admin">Django - Admin</a><br /></li>
-                {% else %}
-                    <li><a href="{% url 'register' %}">Cadastre-se</a><br /></li>
-                    <li><a href="{% url 'login' %}">Entrar</a><br /></li>
-                {% endif %}
-                <li><a href="{% url 'index' %}">Página inicial</a><br /></li>
-                <li><a href="{% url 'about' %}">Sobre</a><br /></li>
-            </ul>
-
-
-
-
-
-            <br>
+            <a href="{% url 'index' %}">Página inicial</a><br />
+            <a href="{% url 'about' %}">Sobre</a><br />
+            {% if user.is_authenticated %}
+                <a href="{% url 'restricted' %}">Conteúdo exclusivo</a><br />
+                <a href="{% url 'logout' %}">Logout</a><br />
+                <a href="{% url 'add_category' %}">Adicionar categoria</a><br />
+                <a href="/admin">Django - Admin</a><br />
+            {% else %}
+                <a href="{% url 'register' %}">Cadastre-se</a><br />
+                <a href="{% url 'login' %}">Entrar</a><br />
+            {% endif %}
         </div>
     </body>
 </html>

@@ -2,41 +2,42 @@
 {% load staticfiles %}
 
 {% block body_block %}
-        <div>
-            <h3>Categorias mais curtidas</h3>
-            {% if categories %}
-                <ul>
-                   {% for category in categories %}
-                        <li><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a> - {{ category.likes }} likes</li>
-                   {% endfor %}
-                </ul>
-
-            {% else %}
-
-                <h4>Não existem categorias cadastradas.</h4>
-
-            {% endif %}
-
-        </div>
-
-        <div>
-            <h3>Páginas mais visualizadas</h3>
-        {% if pages %}
+    <div>
+        <h3>Categorias mais curtidas</h3>
+        {% if categories %}
             <ul>
-               {% for page in pages %}
-                    <li><a href="{{ page.url }}" target="_blank">{{ page.title }}</a> - {{ page.views }} views</li>
+               {% for category in categories %}
+                    <li><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a> - {{ category.likes }} likes</li>
                {% endfor %}
             </ul>
 
         {% else %}
 
-            <h4>Não existem páginas para essa categoria.</h4>
+            <h4>Não existem categorias cadastradas.</h4>
 
         {% endif %}
 
-        </div>
+    </div>
 
-        <div>
-            <img width="400px" height="400px" src="{% static 'images/rango.jpg' %}" alt="Picture of Rango"/>
-        </div>
+    <div>
+        <h3>Páginas mais visualizadas</h3>
+    {% if pages %}
+        <ul>
+           {% for page in pages %}
+                <li><a href="{{ page.url }}" target="_blank">{{ page.title }}</a> - {{ page.views }} views</li>
+           {% endfor %}
+        </ul>
+
+    {% else %}
+
+        <h4>Não existem páginas para essa categoria.</h4>
+
+    {% endif %}
+
+    </div>
+
+    <div>
+        <img width="400px" height="400px" src="{% static 'images/rango.jpg' %}" alt="Picture of Rango"/>
+    </div>
+
 {% endblock body_block %}

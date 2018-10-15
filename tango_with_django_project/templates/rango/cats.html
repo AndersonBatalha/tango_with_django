@@ -1,21 +1,15 @@
-{% extends 'rango/base.html' %}
+<h1>Categorias</h1>
+<ul>
+    {% if cats %}
+        {% for c in cats %}
+            {% if c == act_cat %}
+                <li><strong><a href="{% url 'show_category' c.slug %}">{{ c.name }}</a></strong></li>
+            {% else %}
+                <li><a href="{% url 'show_category' c.slug %}">{{ c.name }}</a></li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <strong>Não existem categorias</strong>
+    {% endif %}
 
-{% block sidebar_block %}
-
-    <h1>Categorias</h1>
-    <ul>
-        {% if cats %}
-            {% for c in cats %}
-                {% if c == act_cat %}
-                    <li><strong><a href="{% url 'show_category' c.slug %}">{{ c.name }}</a></strong></li>
-                {% else %}
-                    <li><a href="{% url 'show_category' c.slug %}">{{ c.name }}</a></li>
-                {% endif %}
-            {% endfor %}
-        {% else %}
-            <strong>Não existem categorias</strong>
-        {% endif %}
-
-    </ul>
-
-{% endblock %}
+</ul>
