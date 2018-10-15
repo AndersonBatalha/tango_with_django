@@ -17,6 +17,7 @@
         {% if user.is_authenticated %}
             <div>
                 olá, {{ user.username }}! <br /><br />
+                <p><a href="{% url 'logout' %}">Sair</a></p>
             </div>
         {% else %}
             <div>
@@ -38,12 +39,24 @@
 
         <hr>
         <div>
-            <a href="{% url 'index' %}">Página inicial</a><br />
-            <a href="{% url 'about' %}">About</a><br />
-            <a href="{% url 'register' %}">Cadastre-se</a><br />
-            <a href="{% url 'login' %}">Entrar</a><br />
-            <a href="{% url 'add_category' %}">Adicionar categoria</a><br />
-            <a href="/admin">Django - Admin</a><br />
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'restricted' %}">Conteúdo exclusivo</a><br /></li>
+                    <li><a href="{% url 'logout' %}">Logout</a><br /></li>
+                {% else %}
+                    <li><a href="{% url 'register' %}">Cadastre-se</a><br /></li>
+                    <li><a href="{% url 'login' %}">Entrar</a><br /></li>
+                {% endif %}
+                <li><a href="{% url 'index' %}">Página inicial</a><br /></li>
+                <li><a href="{% url 'about' %}">Sobre</a><br /></li>
+                <li><a href="{% url 'add_category' %}">Adicionar categoria</a><br /></li>
+                <li><a href="/admin">Django - Admin</a><br /></li>
+            </ul>
+
+
+
+
+
             <br>
         </div>
     </body>
