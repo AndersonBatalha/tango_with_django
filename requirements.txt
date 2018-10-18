@@ -1,6 +1,7 @@
 bcrypt==3.1.4
 cffi==1.11.5
 Django==1.9.10
+django-bootstrap==0.2.4
 django-bootstrap-toolkit==2.15.0
 django-registration-redux==2.4
 Pillow==5.2.0
