@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rango',
     'bootstrap_toolkit',
+    'crispy_forms',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -140,3 +141,5 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/rango/login'
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
