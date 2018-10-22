@@ -6,8 +6,23 @@
 {% block title_block %} - Index {% endblock %}
 
 {% block body_block %}
+    <div class="jumbotron">
+        <h1 class="display-3"><strong>Rango says...</strong></h1>
+        {% if user.is_authenticated %}
+            <div>
+                <h1>
+                    <p class="lead">Olá, {{ user.username }}! <br /><br />
+                </h1>
+                <a href="{% url 'logout' %}">Sair</a></p>
+            </div>
+        {% else %}
+            <div>
+                <h3>hey there partner! <br /><br /></h3>
+            </div>
+        {% endif %}
+    </div>
 
-        <hr>
+    <hr>
 
-        <h4>Desenvolvido por {{ autor }}</h4>
+    <h4>Desenvolvido por {{ autor }}</h4>
 {% endblock %}
