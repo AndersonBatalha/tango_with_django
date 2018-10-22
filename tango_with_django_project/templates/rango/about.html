@@ -1,16 +1,16 @@
-{% extends 'rango/base.html' %}
+{% extends 'rango/base_bootstrap.html' %}
 {% load staticfiles %}
 
 {% block title_block %} - About {% endblock title_block %}
 
 {% block body_block %}
-        <h2>Sobre o rango</h2>
 
-        <div>
-            <h3><a href='{{ twitter }}'>Siga-nos</a><br><br></h3>
-        </div>
+    <h4>Rango é um site destinado a guardar links.</h4>
 
-        <div>
-            <img height="450px" width="325px" src="{% static 'images/img_rango.jpg' %}" alt="Personagem do filme Rango">
-        </div>
+    <a href='{{ twitter }}' target="_blank" class="btn btn-primary">
+        Siga-nos no Twitter
+    </a>
+
+    <br><br>
+    <img height="450px" width="325px" src="{% static 'images/img_rango.jpg' %}" alt="Personagem do filme Rango">
 {% endblock body_block %}

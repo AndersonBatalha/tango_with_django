@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-{% extends 'rango/base.html'%}
+{% extends 'rango/base_bootstrap.html' %}
 
 {% block title_block %} - Categoria: {{ category.name }} {% endblock %}
 
@@ -11,7 +11,7 @@
         {% if pages %}
             <ul>
                 {% for page in pages %}
-                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                <li><a href="{{ page.url }}" target="_blank">{{ page.title }}</a></li>
                 {% endfor %}
             </ul>
 

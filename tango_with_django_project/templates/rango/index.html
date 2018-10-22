@@ -2,38 +2,60 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    <div>
-        <h3>Categorias mais curtidas</h3>
-        {% if categories %}
-            <ul>
-               {% for category in categories %}
-                    <li><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a> - {{ category.likes }} likes</li>
-               {% endfor %}
-            </ul>
-
+    <div class="jumbotron">
+        <h1 class="display-3"><strong>Rango says...</strong></h1>
+        {% if user.is_authenticated %}
+            <div>
+                <h1>
+                    <p class="lead">Olá, {{ user.username }}! <br /><br />
+                </h1>
+                <a href="{% url 'logout' %}">Sair</a></p>
+            </div>
         {% else %}
-
-            <h4>Não existem categorias cadastradas.</h4>
-
+            <div>
+                <h3>hey there partner! <br /><br /></h3>
+            </div>
         {% endif %}
-
     </div>
 
-    <div>
-        <h3>Páginas mais visualizadas</h3>
-    {% if pages %}
-        <ul>
-           {% for page in pages %}
-                <li><a href="{{ page.url }}" target="_blank">{{ page.title }}</a> - {{ page.views }} views</li>
-           {% endfor %}
-        </ul>
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row marketing">
 
-    {% else %}
+            <div class="col-lg-6">
 
-        <h4>Não existem páginas para essa categoria.</h4>
+                <h3>Categorias mais curtidas</h3>
+                {% if categories %}
+                    <ul>
+                       {% for category in categories %}
+                            <li><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a> - {{ category.likes }} likes</li>
+                       {% endfor %}
+                    </ul>
 
-    {% endif %}
+                {% else %}
 
+                    <h4>Não existem categorias cadastradas.</h4>
+
+                {% endif %}
+            </div>
+
+            <div class="col-lg-6">
+                <h3>Páginas mais visualizadas</h3>
+            {% if pages %}
+                <ul>
+                   {% for page in pages %}
+                        <li><a href="{{ page.url }}" target="_blank">{{ page.title }}</a> - {{ page.views }} views</li>
+                   {% endfor %}
+                </ul>
+
+            {% else %}
+
+                <h4>Não existem páginas para essa categoria.</h4>
+
+            {% endif %}
+
+            </div>
+        </div>
     </div>
 
     <div>
