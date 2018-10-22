@@ -9,11 +9,28 @@
 
         <h1>{{ category.name }}</h1>
         {% if pages %}
-            <ul>
-                {% for page in pages %}
-                <li><a href="{{ page.url }}" target="_blank">{{ page.title }}</a></li>
-                {% endfor %}
-            </ul>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Views</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for page in pages %}
+                        <tr>
+                            <th scope="row">{{ page.id }}</th>
+                            <td>{{ page.title }}</td>
+                            <td>{{ page.url }}</td>
+                            <td>{{ page.views }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
         {% else %}
             <strong><h4>Não existem páginas relacionadas a esta categoria</h4></strong>

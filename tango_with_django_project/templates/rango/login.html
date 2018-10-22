@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block body_block %}
-    <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
-    rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/signin.css' %}">
 
     <div align="center">
         <form class="form-signin" id="form_login" method="post" action="{% url 'login' %}">
             {% csrf_token %}
-            <img class="mb-4" src="http://www.tangowithdjango.com/book17/_static/twd200x200.jpg" alt="" width="128" height="128">
+            <img class="mb-4" src="{% static 'images/twd200x200.jpg' %}" alt="" width="128" height="128">
 
             <h1 class="h3 mb-4 font-weight-normal">Faça login</h1>
             <label for="inputUser" class="sr-only">Nome de usuário</label>
