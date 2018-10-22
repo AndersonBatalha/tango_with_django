@@ -1,26 +1,37 @@
-{% extends 'rango/base.html' %}
+{% extends 'rango/base_bootstrap.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block title_block %}
     - Register
 {% endblock title_block %}
 
 {% block body_block %}
-    <h1>Cadastre-se</h1>
-    {% if registered %}
-        Rango diz: <strong>obrigado por se cadastrar!</strong>
-        <a href="{% url 'index' %}">Voltar a página inicial</a>
-    {% else %}
-        Rango diz: <strong>Cadastre-se aqui!</strong>
-        <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+    <!-- Estilos customizados para esse template -->
+    <link href="https://getbootstrap.com/docs/4.1/examples/checkout/form-validation.css"
+    rel="stylesheet">
+
+    <div>
+        {% if registered %}
+            Rango diz: <strong>obrigado por se cadastrar!</strong>
+            <a href="{% url 'index' %}">Voltar a página inicial</a>
+        {% else %}
+           <form class="form-signin" id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
             {% csrf_token %}
+            <div align="center">
+                <img class="mb-4" src="http://www.tangowithdjango.com/book17/_static/twd200x200.jpg" alt="" width="128" height="128">
+                <h1 class="h3 mb-3 font-weight-normal">Cadastre-se</h1>
+            </div>
 
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
-            <input type="submit" name="submit" value="Register" />
+            {{ user_form|crispy }}
+            {{ profile_form|crispy }}
 
+            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Register">Register</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
         </form>
-    {% endif %}
+
+        {% endif %}
+    </div>
 
 {% endblock body_block %}
 
