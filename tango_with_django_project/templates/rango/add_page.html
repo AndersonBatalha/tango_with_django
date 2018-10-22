@@ -5,9 +5,8 @@
 {% block title_block %} - Adicionar página em "{{ category.name }}" {% endblock %}
 
 {% block body_block %}
-    <h1>Adicionar categoria</h1>
     <form role="form" id="page_form" method="post" action="{% url 'add_page' category.slug %}">
-        <h4 class="form-signin-heading">Adicionar página em <a href="{% url 'show_category' category.slug %}">{{ category.name }}</a></h4>
+        <h2 class="form-signin-heading">Adicionar página em <a href="{% url 'show_category' category.slug %}">{{ category.name }}</a></h2>
         <br>
 
         {% csrf_token %}

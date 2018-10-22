@@ -25,7 +25,7 @@
                         <tr>
                             <th scope="row">{{ page.id }}</th>
                             <td>{{ page.title }}</td>
-                            <td>{{ page.url }}</td>
+                            <td><a href="{{ page.url }}" target="_blank">{{ page.url }}</a></td>
                             <td>{{ page.views }}</td>
                         </tr>
                     {% endfor %}
@@ -39,7 +39,7 @@
     {% if logado %}
         <a href="{% url 'add_page' category.slug %}">Adicionar página</a><br><br>
     {% endif %}
-
+ s
     {% else %}
         <h2>A categoria solicitada não existe.</h2>
     {% endif %}

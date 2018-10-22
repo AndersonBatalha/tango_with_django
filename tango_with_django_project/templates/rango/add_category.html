@@ -4,10 +4,9 @@
 {% block title_block %} - Adicionar categoria {% endblock title_block %}
 
 {% block body_block %}
-        <h1>Adicionar categoria</h1>
         <div>
             <form id="category_form" method="post" action="{% url 'add_category' %}">
-                <h4 class="form-signin-heading">Adicionar categoria</h4><br>
+                <h2 class="form-signin-heading">Adicionar categoria</h2><br>
 
                 {% csrf_token %}
 
