@@ -8,3 +8,4 @@ from .register import register
 from .login import user_login
 from .restricted import restricted
 from .logout import user_logout
+from .track_url import track_url
