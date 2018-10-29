@@ -32,8 +32,11 @@
                             <a href="{% url 'show_category' category.slug %}"><li class="list-group-item d-flex justify-content-between align-items-center">
                                 {{ category.name }}
                                 <span class="badge badge-primary badge-pill">
-                                    <ion-icon name="eye"></ion-icon>
+                                    <ion-icon name="thumbs-up"></ion-icon>
                                     {{ category.likes }}
+
+                                    <ion-icon name="eye"></ion-icon>
+                                    {{ category.views }}
                                 </span>
                             </li></a>
                        {% endfor %}
@@ -52,7 +55,7 @@
 
                 <ul class="list-group">
                    {% for page in pages %}
-                        <a href="{{ page.url }}" target="_blank"><li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="{% url 'goto' %}?page_id={{ page.id }}" target="_blank"><li class="list-group-item d-flex justify-content-between align-items-center">
                         {{ page.title }}
                             <span class="badge badge-primary badge-pill">
                                 <ion-icon name="eye"></ion-icon>
