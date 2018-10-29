@@ -5,9 +5,15 @@
 {% block title_block %} - Categoria: {{ category.name }} {% endblock %}
 
 {% block body_block %}
+
     {% if category %}
 
-        <h1>{{ category.name }}</h1>
+        <h1>
+            {{ category.name }}
+            <a href="{% url 'add_like' category.id %}"><button type="button" class="btn btn-primary"><ion-icon name="thumbs-up"></ion-icon> Curtir</button></a>
+        </h1>
+
+
         {% if pages %}
 
             <table class="table">
