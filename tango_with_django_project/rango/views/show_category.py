@@ -31,7 +31,7 @@ class ShowCategory(View):
         try:
             self.category = Category.objects.get(slug=category_name_slug) # busca a categoria pelo nome
 
-            self.pages = Page.objects.filter(category=self.category) # busca todas as páginas que pertencem a categoria
+            self.pages = Page.objects.filter(category=self.category).order_by('-views') # busca todas as páginas que pertencem a categoria
 
             self.context_dict['pages'] = self.pages # adiciona o resultado da consulta para o contexto
             self.context_dict['category'] = self.category
