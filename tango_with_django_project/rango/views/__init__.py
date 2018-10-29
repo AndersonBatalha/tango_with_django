@@ -9,3 +9,4 @@ from .login import user_login
 from .restricted import restricted
 from .logout import user_logout
 from .track_url import track_url
+from .add_like import add_like

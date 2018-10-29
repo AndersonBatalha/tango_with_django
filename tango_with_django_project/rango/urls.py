@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^restricted/$', views.restricted, name='restricted'),
     url(r'^goto/$', views.track_url, name='goto'),
+    url(r'^like/(?P<cat_id>[\w\-]+)/$', views.add_like, name='add_like'),
 ]
