@@ -5,17 +5,28 @@
 {% block title_block %} - Categoria: {{ category.name }} {% endblock %}
 
 {% block body_block %}
-
     {% if category %}
-
-        <h1>
+        <h1 class="display-4">
             {{ category.name }}
-            <a href="{% url 'add_like' category.id %}"><button type="button" class="btn btn-primary"><ion-icon name="thumbs-up"></ion-icon> Curtir</button></a>
+            <a href="{% url 'add_like' category.id %}">
+                <button type="button" class="btn btn-primary float-right">
+                    <ion-icon name="thumbs-up"></ion-icon> Curtir
+                </button>
+            </a>
         </h1>
 
+        <h4>
+            <div class="d-flex bd-highlight" align="center">
+                <div class="p-3 w-50 flex-fill bd-highlight">
+                    <ion-icon name="thumbs-up"></ion-icon>{{ category.likes }} curtidas
+                </div>
+                <div class="p-3 w-50 flex-fill bd-highlight">
+                    <ion-icon name="eye"></ion-icon>{{ category.views }} visualizações
+                </div>
+            </div>
+        </h4>
 
         {% if pages %}
-
             <table class="table">
                 <thead>
                     <tr>
@@ -37,15 +48,32 @@
                 </tbody>
             </table>
 
+            {% if logado %}
+                <a href="{% url 'add_page' category.slug %}">
+                    <button type="button" class="btn btn-primary float-right">
+                        <ion-icon name="add"></ion-icon> Adicionar página
+                    </button>
+                </a>
+            {% endif %}
         {% else %}
-            <strong><h4>Não existem páginas relacionadas a esta categoria</h4></strong>
+            <div class="alert alert-warning" role="alert">
+                <strong>
+                    <h5>
+                        <p>Não existem páginas relacionadas a esta categoria.</p>
+                        {% if logado %}
+                            <p>Clique
+                            <a href="{% url 'add_page' category.slug %}" class="alert-link">aqui</a> para adicionar uma página em "{{ category.name }}"</p>
+                        {% endif %}
+                    </h5>
+                </strong>
+            </div>
         {% endif %}
 
-    {% if logado %}
-        <a href="{% url 'add_page' category.slug %}">Adicionar página</a><br><br>
-    {% endif %}
-
     {% else %}
-        <h2>A categoria solicitada não existe.</h2>
+        <div class="alert alert-danger" role="alert">
+            <h2>A categoria solicitada não existe.</h2>
+            <br>
+            <p>Clique <a href="{% url 'add_category' %}" class="alert-link">aqui</a> para adicionar uma categoria</p>
+        </div>
     {% endif %}
 {% endblock %}
