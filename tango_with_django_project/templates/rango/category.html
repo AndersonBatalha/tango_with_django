@@ -8,20 +8,23 @@
     {% if category %}
         <h1 class="display-4">
             {{ category.name }}
-            <a href="{% url 'add_like' category.id %}">
-                <button type="button" class="btn btn-primary float-right">
-                    <ion-icon name="thumbs-up"></ion-icon> Curtir
-                </button>
-            </a>
+
+            {% if logado %}
+                <a href="{% url 'curtir' category.slug %}">
+                    <button type="button" class="btn btn-primary float-right">
+                        <ion-icon name="thumbs-up"></ion-icon> Curtir
+                    </button>
+                </a>
+            {% endif %}
         </h1>
 
         <h4>
             <div class="d-flex bd-highlight" align="center">
                 <div class="p-3 w-50 flex-fill bd-highlight">
-                    <ion-icon name="thumbs-up"></ion-icon>{{ category.likes }} curtidas
+                    <ion-icon name="thumbs-up"></ion-icon>&nbsp{{ category.likes }} curtidas
                 </div>
                 <div class="p-3 w-50 flex-fill bd-highlight">
-                    <ion-icon name="eye"></ion-icon>{{ category.views }} visualizações
+                    <ion-icon name="tv"></ion-icon>&nbsp{{ category.views }} visualizações
                 </div>
             </div>
         </h4>
