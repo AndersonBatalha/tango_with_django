@@ -7,10 +7,26 @@
 
     <h4>Rango é um site destinado a guardar links.</h4>
 
-    <a href='{{ twitter }}' target="_blank" class="btn btn-primary">
-        Siga-nos no Twitter
-    </a>
+    <button class="btn btn-primary" onclick="alert('You clicked me using JavaScript!');">
+        Click me! I run JavaScript
+    </button>
+
+    <button class="btn btn-primary" id="about-btn">
+        Click me! I run JavaScript on speed
+    </button>
+
+    <p>Exemplo 1 - JQuery</p>
+    <p>Exemplo 2 - JQuery</p>
+
+    <div id="msg">OOOO</div>
 
     <br><br>
-    <img height="450px" width="325px" src="{% static 'images/img_rango.jpg' %}" alt="Personagem do filme Rango">
+    <div align="center" class="card" style="width: 14em;">
+        <img height="250px" width="200px" class="card-img-top" src="{% static 'images/img_rango.jpg' %}" alt="Personagem do filme Rango">
+        <div class="card-body">
+            <p class="card-text">Personagem do filme Rango</p>
+            <a href="{{ twitter }}" class="btn btn-primary">Twitter</a>
+        </div>
+    </div>
+
 {% endblock body_block %}
