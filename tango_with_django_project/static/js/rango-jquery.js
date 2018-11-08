@@ -16,6 +16,5 @@ $(document).ready(function () {
         msgstr = $('#msg').html();
         msgstr = msgstr + 'oooo'
         $('#msg').html(msgstr);
-
-    })
+    });
 });

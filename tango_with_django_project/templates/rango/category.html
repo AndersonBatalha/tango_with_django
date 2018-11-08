@@ -10,18 +10,16 @@
             {{ category.name }}
 
             {% if logado %}
-                <a href="{% url 'curtir' category.slug %}">
-                    <button type="button" class="btn btn-primary float-right">
-                        <ion-icon name="thumbs-up"></ion-icon> Curtir
-                    </button>
-                </a>
+                <button id="likes" data-catid="{{ category.id }}" type="button" class="btn btn-primary float-right">
+                    <ion-icon name="thumbs-up"></ion-icon> Curtir
+                </button>
             {% endif %}
         </h1>
 
         <h4>
             <div class="d-flex bd-highlight" align="center">
                 <div class="p-3 w-50 flex-fill bd-highlight">
-                    <ion-icon name="thumbs-up"></ion-icon>&nbsp{{ category.likes }} curtidas
+                    <ion-icon name="thumbs-up"></ion-icon>&nbsp<label id="like_count">{{ category.likes }}</label> curtidas
                 </div>
                 <div class="p-3 w-50 flex-fill bd-highlight">
                     <ion-icon name="tv"></ion-icon>&nbsp{{ category.views }} visualizações
