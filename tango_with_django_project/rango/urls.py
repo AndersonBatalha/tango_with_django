@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^restricted/$', views.restricted, name='restricted'),
     url(r'^goto/(?P<page_id>[\w\-]+)/$', views.track_url, name='goto'),
     url(r'^like/$', views.like_category, name='like_category'),
+    url(r'^suggest/$', views.suggest_category, name='suggest_category'),
 ]

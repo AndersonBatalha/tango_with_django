@@ -6,3 +6,12 @@ $('#likes').click(function(){
             $('#likes').hide();
     });
 });
+
+$('#suggestion').keyup( function () {
+    var query;
+    query = $(this).val();
+
+    $(this).get('rango/suggest', {suggestion: query}, function (data) {
+        $('#cats').html(data);
+    });
+});

@@ -12,7 +12,7 @@ os.system('python manage.py makemigrations rango')
 
 from rango.models import Category, Page
 
-categorias = ['Esportes', 'Filmes', 'Política', 'Django', 'Python', 'git', 'Carros', 'Notícias', 'Televisão', 'Educação', 'Tecnologia', 'virtualenv', 'Entretenimento', 'Culinária', 'Rádios', 'Linux', 'Software livre', 'Ubuntu', 'Wine', 'Tutoriais', 'Eleições', 'Redes sociais', 'Podcast', 'Economia', 'E-mail', 'Jogos', 'Copa do Mundo', 'Humor', 'Vídeos', 'Ionic', 'Android', 'Blogs', 'Windows', 'Debian', 'Red Hat', 'Java', 'Flask', 'Bottle', 'Typescript', 'Bootstrap', 'CSS', 'HTML', 'PHP', 'Shell script', 'Redes', 'Matemática', 'Segurança da informação', 'Saúde', 'F1']
+categorias = ['Esportes', 'Filmes', 'Política', 'Django', 'Python', 'git', 'Carros', 'Notícias', 'Televisão', 'Educação', 'Tecnologia', 'virtualenv', 'Entretenimento', 'Culinária', 'Rádios', 'Linux', 'Software livre', 'Ubuntu', 'Wine', 'Tutoriais', 'Eleições', 'Redes sociais', 'Podcast', 'Economia', 'E-mail', 'Jogos', 'Copa do Mundo', 'Humor', 'Vídeos', 'Ionic', 'Android', 'Blogs', 'Windows', 'Debian', 'Red Hat', 'Java', 'Flask', 'Bottle', 'Typescript', 'Bootstrap', 'CSS', 'HTML', 'PHP', 'Shell script', 'Redes', 'Matemática', 'Segurança da informação', 'Saúde', 'F1', 'Pascal', 'Perl', 'PHP', 'Prolog', 'PostScript', 'Programming']
 
 def gerar_arquivo_category():
     if os.path.isfile('categories.csv') and len(open('categories.csv', 'r').readlines()) > 0:

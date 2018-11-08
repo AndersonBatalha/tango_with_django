@@ -1,49 +1,55 @@
-Esportes, 20, 197
-Filmes, 68, 163
-Política, 41, 36
-Django, 57, 163
-Python, 4, 216
-git, 36, 52
-Carros, 115, 172
-Notícias, 203, 214
-Televisão, 53, 49
-Educação, 88, 41
-Tecnologia, 183, 194
-virtualenv, 162, 72
-Entretenimento, 111, 23
-Culinária, 62, 174
-Rádios, 92, 153
-Linux, 10, 52
-Software livre, 179, 87
-Ubuntu, 66, 12
-Wine, 228, 247
-Tutoriais, 164, 168
-Eleições, 200, 56
-Redes sociais, 240, 223
-Podcast, 146, 18
-Economia, 199, 112
-E-mail, 175, 103
-Jogos, 128, 87
-Copa do Mundo, 212, 211
-Humor, 84, 135
-Vídeos, 9, 12
-Ionic, 130, 239
-Android, 76, 151
-Blogs, 41, 124
-Windows, 89, 206
-Debian, 209, 247
-Red Hat, 57, 246
-Java, 137, 29
-Flask, 208, 157
-Bottle, 142, 146
-Typescript, 191, 117
-Bootstrap, 57, 154
-CSS, 10, 93
-HTML, 201, 49
-PHP, 181, 152
-Shell script, 199, 163
-Redes, 197, 221
-Matemática, 41, 31
-Segurança da informação, 22, 245
-Saúde, 114, 91
-F1, 103, 91
+Esportes, 203, 38
+Filmes, 157, 29
+Política, 28, 78
+Django, 1, 117
+Python, 23, 39
+git, 111, 236
+Carros, 27, 204
+Notícias, 88, 54
+Televisão, 139, 46
+Educação, 47, 139
+Tecnologia, 109, 29
+virtualenv, 195, 205
+Entretenimento, 226, 228
+Culinária, 21, 154
+Rádios, 16, 168
+Linux, 85, 183
+Software livre, 181, 179
+Ubuntu, 26, 84
+Wine, 158, 180
+Tutoriais, 88, 231
+Eleições, 9, 3
+Redes sociais, 104, 175
+Podcast, 225, 31
+Economia, 107, 217
+E-mail, 77, 91
+Jogos, 38, 56
+Copa do Mundo, 21, 102
+Humor, 167, 149
+Vídeos, 32, 48
+Ionic, 51, 115
+Android, 181, 146
+Blogs, 170, 12
+Windows, 61, 131
+Debian, 151, 122
+Red Hat, 140, 110
+Java, 211, 53
+Flask, 243, 121
+Bottle, 217, 50
+Typescript, 73, 108
+Bootstrap, 8, 43
+CSS, 108, 101
+HTML, 218, 225
+PHP, 20, 76
+Shell script, 8, 59
+Redes, 26, 107
+Matemática, 243, 69
+Segurança da informação, 180, 218
+Saúde, 209, 101
+F1, 98, 69
+Pascal, 71, 39
+Perl, 60, 42
+PHP, 249, 244
+Prolog, 208, 202
+PostScript, 203, 26
+Programming, 227, 24
