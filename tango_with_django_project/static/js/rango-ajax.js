@@ -11,7 +11,7 @@ $('#suggestion').keyup( function () {
     var query;
     query = $(this).val();
 
-    $(this).get('rango/suggest', {suggestion: query}, function (data) {
+    $.get('/rango/suggest_category/', {suggestion: query}, function (data) {
         $('#cats').html(data);
     });
 });
